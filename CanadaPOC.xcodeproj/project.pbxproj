@@ -33,6 +33,11 @@
 		18A94E03242C9C5A00238135 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A94E02242C9C5A00238135 /* ImageManager.swift */; };
 		18A94E05242C9D2200238135 /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A94E04242C9D2200238135 /* DynamicValue.swift */; };
 		18A94E08242C9DA500238135 /* LandscapeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A94E07242C9DA500238135 /* LandscapeTableViewCell.swift */; };
+		18A94E0A242CCB8C00238135 /* facts.json in Resources */ = {isa = PBXBuildFile; fileRef = 18A94E09242CCB8C00238135 /* facts.json */; };
+		18A94E0B242CCB8C00238135 /* facts.json in Resources */ = {isa = PBXBuildFile; fileRef = 18A94E09242CCB8C00238135 /* facts.json */; };
+		18A94E0D242CCC2000238135 /* ViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A94E0C242CCC2000238135 /* ViewModelTest.swift */; };
+		18A94E0F242CCF0700238135 /* DataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A94E0E242CCF0700238135 /* DataSourceTests.swift */; };
+		18A94E11242CD00800238135 /* ModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A94E10242CD00800238135 /* ModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +90,10 @@
 		18A94E02242C9C5A00238135 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		18A94E04242C9D2200238135 /* DynamicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicValue.swift; sourceTree = "<group>"; };
 		18A94E07242C9DA500238135 /* LandscapeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeTableViewCell.swift; sourceTree = "<group>"; };
+		18A94E09242CCB8C00238135 /* facts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = facts.json; sourceTree = "<group>"; };
+		18A94E0C242CCC2000238135 /* ViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTest.swift; sourceTree = "<group>"; };
+		18A94E0E242CCF0700238135 /* DataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceTests.swift; sourceTree = "<group>"; };
+		18A94E10242CD00800238135 /* ModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +154,7 @@
 				18A94DE2242C793B00238135 /* Util */,
 				18A94DB6242C74CA00238135 /* Assets.xcassets */,
 				18A94DB8242C74CA00238135 /* LaunchScreen.storyboard */,
+				18A94E09242CCB8C00238135 /* facts.json */,
 				18A94DBB242C74CA00238135 /* Info.plist */,
 			);
 			path = CanadaPOC;
@@ -154,6 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				18A94DC4242C74CA00238135 /* CanadaPOCTests.swift */,
+				18A94E0C242CCC2000238135 /* ViewModelTest.swift */,
+				18A94E0E242CCF0700238135 /* DataSourceTests.swift */,
+				18A94E10242CD00800238135 /* ModelTest.swift */,
 				18A94DC6242C74CA00238135 /* Info.plist */,
 			);
 			path = CanadaPOCTests;
@@ -337,6 +350,7 @@
 				18A94DBA242C74CA00238135 /* LaunchScreen.storyboard in Resources */,
 				18A94DB7242C74CA00238135 /* Assets.xcassets in Resources */,
 				18A94DB5242C74C900238135 /* Main.storyboard in Resources */,
+				18A94E0A242CCB8C00238135 /* facts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A94E0B242CCB8C00238135 /* facts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +404,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A94E0F242CCF0700238135 /* DataSourceTests.swift in Sources */,
+				18A94E0D242CCC2000238135 /* ViewModelTest.swift in Sources */,
 				18A94DC5242C74CA00238135 /* CanadaPOCTests.swift in Sources */,
+				18A94E11242CD00800238135 /* ModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
