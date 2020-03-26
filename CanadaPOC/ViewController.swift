@@ -10,11 +10,70 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private let refreshControl = UIRefreshControl()
+    @IBOutlet weak var tableView: UITableView!
+    
+    fileprivate var service : DataService! = DataService()
+    let dataSource = FeedsDataSource()
+    lazy var viewModel : FeedsViewModel = {
+        let viewModel = FeedsViewModel(service: service, dataSource: dataSource)
+        return viewModel
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.tableView.dataSource = self.dataSource
+        self.dataSource.data.addAndNotify(observer: self) { [weak self] in
+            self?.tableView.reloadData()
+        }
+        
+        self.serviceCall()
+        
+    }
+    
+    @objc func serviceCall() {
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            self.viewModel.fetchServiceCall { result in
+                switch result {
+                case .success :
+                    self.title = self.viewModel.title
+                    break
+                case .failure :
+                    break
+                }
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+        }
+        refreshControl.endRefreshing()
     }
 
 
 }
 
+extension ViewController {
+    func setupUI() {
+        //self.tableView.backgroundColor = ThemeColor.green
+        //self.view.backgroundColor = ThemeColor.primaryLight
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: self, action: #selector(serviceCall))
+    }
+}
+
+
+extension ViewController : UITableViewDelegate{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+}
