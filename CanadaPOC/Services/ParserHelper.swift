@@ -15,9 +15,35 @@ protocol Parceable {
 
 final class ParserHelper {
     
+    static func decode(data:Data) {
+        
+       
+            let decoder = JSONDecoder()
+            do {
+                
+                let stringToParse = String(decoding: data, as: UTF8.self)
+                if let json = stringToParse.data(using: String.Encoding.utf8){
+                    
+                    let jsondata = try decoder.decode(CountryJsonModel.self, from: json)
+                    //return jsondata
+                    print(jsondata)
+                }
+                // parse is error
+                return //nil
+                
+            }
+            catch {
+                print(error)
+                return //nil
+            }
+        
+    }
+    
     static func parse<T: Parceable>(data: Data, completion : (Result<[T], ErrorResult>) -> Void) {
         
         do {
+            
+            decode(data: data)
             
             if let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [AnyObject] {
                 // init final result
@@ -50,6 +76,9 @@ final class ParserHelper {
         if let value = String(data: data, encoding: String.Encoding.ascii) {
             if let jsonData = value.data(using: String.Encoding.utf8) {
                 do {
+                    
+                    decode(data: data)
+                    
                     if let dictionary = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: AnyObject] {
                         print(dictionary)
                         // init final result
