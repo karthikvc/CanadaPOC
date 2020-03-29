@@ -18,7 +18,8 @@ class ImageHelper:imageSession{
     
     fileprivate let kLazyLoadCellImageViewTag = 1
     fileprivate let kLazyLoadPlaceholderImage = UIImage(named: "placeholder")!
-    var imageManager: ImageManager { return ImageManager() }
+    
+    let imageManager = ImageManager() //{ return ImageManager() }
     
     func updateImageForTableViewCell(_ cell: UITableViewCell, inTableView tableView: UITableView, imageURL: String, atIndexPath indexPath: IndexPath) {
         let imageView = cell.viewWithTag(kLazyLoadCellImageViewTag) as? UIImageView

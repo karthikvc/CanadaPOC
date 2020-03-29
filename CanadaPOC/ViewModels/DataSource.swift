@@ -16,6 +16,8 @@ class GenericDataSource<T> : NSObject {
 
 class FeedsDataSource : GenericDataSource<ListModel>, UITableViewDataSource {
     
+    let imageHelper = ImageHelper()
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -29,7 +31,7 @@ class FeedsDataSource : GenericDataSource<ListModel>, UITableViewDataSource {
         let feedsValue = self.data.value[indexPath.row]
         cell.feedsValue = feedsValue
         if feedsValue.imageRef != ""  && feedsValue.imageRef != "N/A"{
-            ImageHelper().updateImageForTableViewCell(cell, inTableView: tableView, imageURL:feedsValue.imageRef, atIndexPath: indexPath){ (success, image) -> Void in
+            imageHelper.updateImageForTableViewCell(cell, inTableView: tableView, imageURL:feedsValue.imageRef, atIndexPath: indexPath){ (success, image) -> Void in
                 if success && image != nil {
                     cell.thumbnailImage.isHidden = false
                     cell.imageWidthConstraint.constant =  126//60
