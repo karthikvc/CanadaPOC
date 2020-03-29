@@ -19,7 +19,7 @@ class ImageHelper:imageSession{
     fileprivate let kLazyLoadCellImageViewTag = 1
     fileprivate let kLazyLoadPlaceholderImage = UIImage(named: "placeholder")!
     
-    let imageManager = ImageManager() //{ return ImageManager() }
+    let imageManager = ImageManager()
     
     func updateImageForTableViewCell(_ cell: UITableViewCell, inTableView tableView: UITableView, imageURL: String, atIndexPath indexPath: IndexPath) {
         let imageView = cell.viewWithTag(kLazyLoadCellImageViewTag) as? UIImageView
@@ -39,11 +39,13 @@ class ImageHelper:imageSession{
             if success && image != nil {
                 if (tableView.indexPath(for: cell) as NSIndexPath?)?.row == (indexPath as NSIndexPath).row {
                     imageView?.image = image
+                    DispatchQueue.main.async(execute: { completion?(true, image) });
                 }
-            }else{
-                //DispatchQueue.main.async(execute: { completion?(true, image) });
             }
-            DispatchQueue.main.async(execute: { completion?(true, image) });
+            else {
+                DispatchQueue.main.async(execute: { completion?(true, image) });
+            }
+            
             
         }
     }

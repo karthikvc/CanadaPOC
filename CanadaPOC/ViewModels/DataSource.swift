@@ -13,7 +13,7 @@ class GenericDataSource<T> : NSObject {
     var data: DynamicValue<[T]> = DynamicValue([])
     fileprivate let landscapeReuseIdentifier = "LandscapeTableViewCell"
 }
-
+// table view datasource  method implementation
 class FeedsDataSource : GenericDataSource<ListModel>, UITableViewDataSource {
     
     let imageHelper = ImageHelper()
@@ -34,19 +34,20 @@ class FeedsDataSource : GenericDataSource<ListModel>, UITableViewDataSource {
             imageHelper.updateImageForTableViewCell(cell, inTableView: tableView, imageURL:feedsValue.imageRef, atIndexPath: indexPath){ (success, image) -> Void in
                 if success && image != nil {
                     cell.thumbnailImage.isHidden = false
-                    cell.imageWidthConstraint.constant =  126//60
-                    //cell.imageHeightConstraint.constant = 126
+                    cell.imageWidthConstraint.constant =  126
+                    
                 }else{
                     cell.thumbnailImage.isHidden = true
                     cell.imageWidthConstraint.constant = 0
-                    //cell.imageHeightConstraint.constant = 0
+                   
                 }
             }
         }else{
             cell.thumbnailImage.isHidden = true
             cell.imageWidthConstraint.constant = 0
-            //cell.imageHeightConstraint.constant = 0
+            
         }
         return cell
     }
+    
 }

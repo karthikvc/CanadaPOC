@@ -14,7 +14,7 @@ protocol Parceable {
 }
 
 final class ParserHelper {
-    
+    // json decodable parser
     static func decode(data:Data) {
         
        
@@ -29,21 +29,19 @@ final class ParserHelper {
                     print(jsondata)
                 }
                 // parse is error
-                return //nil
+                return
                 
             }
             catch {
                 print(error)
-                return //nil
+                return 
             }
         
     }
-    
+    // json serialization parser
     static func parse<T: Parceable>(data: Data, completion : (Result<[T], ErrorResult>) -> Void) {
         
         do {
-            
-            decode(data: data)
             
             if let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [AnyObject] {
                 // init final result
