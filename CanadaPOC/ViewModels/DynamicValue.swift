@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Bindable Class
 
 typealias CompletionHandler = (() -> Void)
 class DynamicValue<T> {

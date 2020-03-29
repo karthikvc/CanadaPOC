@@ -20,10 +20,10 @@ struct RequestService {
         }
         
         var request = RequestFactory.request(method: .GET, url: url)
-        if let reachability = Reachability(), !reachability.isReachable {
+        if let reachability = Reachability(), !reachability.isReachable { // check Network connection
             request.cachePolicy = .returnCacheDataDontLoad
         }
-        let task = session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in // fetching data
             if let error = error {
                 completion(.failure(.network(string: "An error occured during request :" + error.localizedDescription)))
                 return

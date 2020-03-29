@@ -18,8 +18,8 @@ class RequestHandler {
             return { dataResult in
                 DispatchQueue.global(qos: .background).async(execute: {
                     switch dataResult {
-                    case .success(let data) :
-                        //ParserHelper.parse(data: data, completion: completion)
+                    case .success( _) :
+                        
                         break
                     case .failure(let error) :
                         print("Network error \(error)")

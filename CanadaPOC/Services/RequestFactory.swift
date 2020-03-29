@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Request method type
 struct RequestFactory {
     
     enum Method: String {
@@ -17,7 +18,7 @@ struct RequestFactory {
         case DELETE
         case PATCH
     }
-    
+    // create Request
     static func request(method: Method, url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue

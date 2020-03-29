@@ -13,8 +13,8 @@ class ViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
     
-    fileprivate var service : DataService! = DataService()
-    let dataSource = FeedsDataSource()
+    fileprivate var service : DataService! = DataService() // network service object
+    let dataSource = FeedsDataSource() // for table datasource object
     lazy var viewModel : FeedsViewModel = {
         let viewModel = FeedsViewModel(service: service, dataSource: dataSource)
         return viewModel
@@ -25,14 +25,27 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.tableView.dataSource = self.dataSource
+        //Binding tableView
         self.dataSource.data.addAndNotify(observer: self) { [weak self] in
             self?.tableView.reloadData()
         }
         
+        self.setupUI()
+        self.setupUIRefreshControl()
+        // Fetching data from server
         self.serviceCall()
         
     }
+    // refresh controle added
+    func setupUIRefreshControl(){
+        refreshControl.addTarget(self, action: #selector(serviceCall), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
+        
+    }
     
+    // fetching Request
+    // in closure result is sucess then recevied the model data
+    // in closure result is fail - fetch is fail
     @objc func serviceCall() {
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -55,13 +68,12 @@ class ViewController: UIViewController {
 
 extension ViewController {
     func setupUI() {
-        //self.tableView.backgroundColor = ThemeColor.green
-        //self.view.backgroundColor = ThemeColor.primaryLight
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: self, action: #selector(serviceCall))
     }
 }
 
+// table delegate method implement
 
 extension ViewController : UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
