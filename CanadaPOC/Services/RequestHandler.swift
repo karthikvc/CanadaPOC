@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+// requested data parser 
 class RequestHandler {
     
     let reachability = Reachability()!
